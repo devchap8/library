@@ -24,6 +24,7 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 function displayBooks() {
+    clearLibrary();
     const bookDisplay = document.getElementById("bookDisplay");
     for (book of myLibrary) {
         const box = document.createElement("div");
@@ -78,7 +79,16 @@ function deleteBook() {
     const bookIndex = myLibrary.findIndex((item) => item.id === box.id);
     myLibrary.splice(bookIndex, 1);
     displayBooks();
+}
 
+function clearLibrary() {
+    const display = document.getElementById("bookDisplay");
+    let books = document.querySelectorAll(".bookContainer");
+    books = Array.from(books);
+    for(book of books) {
+        display.removeChild(book);
+    }
 }
 
 addBookToLibrary("Hobbit", "Tolkein", 300, false);
+addBookToLibrary("Lord of the Rings", "Tolkein", 600, true);
