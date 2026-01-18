@@ -1,0 +1,36 @@
+* {
+    /* margin: 0;
+    padding: 0; */
+    box-sizing: border-box;
+}
+
+.bookContainer {
+    display: flex;
+    flex-direction: column;
+    outline: 1px solid red;
+    width: 250px;
+    height: 150px;
+    justify-content: space-around;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.boxLine {
+    display: flex;
+}
+
+.deleteButton {
+    width: 20px;
+    height: auto;
+    border: none;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: auto;
+}
+
+input[type=checkbox] {
+    margin-left: auto;
+    align-self: flex-end;
+}

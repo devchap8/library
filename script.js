@@ -29,23 +29,35 @@ function displayBooks() {
         const box = document.createElement("div");
         box.id = book.id;
         box.classList.add("bookContainer");
-        const title = document.createElement("div");  
+        const topLine = document.createElement("div");
+        topLine.classList.add("boxLine");
+        const title = document.createElement("span");  
         title.innerHTML = `Title: ${book.title}`;
         const author = document.createElement("div");
         author.innerHTML = `Author: ${book.author}`;
         const pages = document.createElement("div");
         pages.innerHTML = `Pages: ${book.pages}`;
         const read = document.createElement("div");
+        read.classList.add("boxLine");
         (book.read === true) ? read.innerHTML = `Read? Yes` 
             : read.innerHTML = `Read? No`;  
+        const readLabel = document.createElement("label");
+        readLabel.setAttribute("for", "bookRead");
+        const readToggle = document.createElement("input");
+        readToggle.id = "bookRead";
+        readToggle.setAttribute("name", "bookRead");
+        readToggle.setAttribute("type", "checkbox");
         const deleteButton = document.createElement("button");
-        deleteButton.innerHTML = "DELETE";
+        deleteButton.innerHTML = "X";
         deleteButton.classList.add("deleteButton");
-        box.appendChild(title);
+        topLine.appendChild(title);
+        topLine.appendChild(deleteButton);
+        box.appendChild(topLine)
         box.appendChild(author);
         box.appendChild(pages);
+        read.appendChild(readLabel);
+        read.appendChild(readToggle);
         box.appendChild(read);
-        box.appendChild(deleteButton);
         bookDisplay.appendChild(box);
         addButtonEventListeners();
     }    
@@ -61,9 +73,9 @@ function addButtonEventListeners() {
 
 function deleteBook() {
     const display = document.getElementById("bookDisplay");
-    const box = this.parentElement;
-    bookDisplay.removeChild(box);
-    const bookIndex = myLibrary.findIndex((item) => item.id === row.id);
+    const box = this.parentElement.parentElement;
+    display.removeChild(box);
+    const bookIndex = myLibrary.findIndex((item) => item.id === box.id);
     myLibrary.splice(bookIndex, 1);
     displayBooks();
 
