@@ -20,30 +20,33 @@ function addBookToLibrary(title, author, pages, read) {
     let book = new Book(title, author, pages, read);
     book.id = crypto.randomUUID();
     myLibrary.push(book);
+    displayBooks();
 }
 
 function displayBooks() {
-    const table = document.getElementById("library-table");
+    const bookDisplay = document.getElementById("bookDisplay");
     for (book of myLibrary) {
-        const row = document.createElement("tr");
-        row.id = book.id;
-        const title = document.createElement("td");  
-        title.innerHTML = book.title;
-        const author = document.createElement("td");
-        author.innerHTML = book.author;
-        const pages = document.createElement("td");
-        pages.innerHTML = book.pages;
-        const read = document.createElement("td");
-        (book.read === true) ? read.innerHTML = "Yes" : read.innerHTML = "No";  
+        const box = document.createElement("div");
+        box.id = book.id;
+        box.classList.add("bookContainer");
+        const title = document.createElement("div");  
+        title.innerHTML = `Title: ${book.title}`;
+        const author = document.createElement("div");
+        author.innerHTML = `Author: ${book.author}`;
+        const pages = document.createElement("div");
+        pages.innerHTML = `Pages: ${book.pages}`;
+        const read = document.createElement("div");
+        (book.read === true) ? read.innerHTML = `Read? Yes` 
+            : read.innerHTML = `Read? No`;  
         const deleteButton = document.createElement("button");
         deleteButton.innerHTML = "DELETE";
         deleteButton.classList.add("deleteButton");
-        row.appendChild(title);
-        row.appendChild(author);
-        row.appendChild(pages);
-        row.appendChild(read);
-        row.appendChild(deleteButton);
-        table.appendChild(row);
+        box.appendChild(title);
+        box.appendChild(author);
+        box.appendChild(pages);
+        box.appendChild(read);
+        box.appendChild(deleteButton);
+        bookDisplay.appendChild(box);
         addButtonEventListeners();
     }    
 }
@@ -57,9 +60,9 @@ function addButtonEventListeners() {
 }
 
 function deleteBook() {
-    const table = document.getElementById("library-table");
-    const row = this.parentElement;
-    table.removeChild(row);
+    const display = document.getElementById("bookDisplay");
+    const box = this.parentElement;
+    bookDisplay.removeChild(box);
     const bookIndex = myLibrary.findIndex((item) => item.id === row.id);
     myLibrary.splice(bookIndex, 1);
     displayBooks();
@@ -67,4 +70,3 @@ function deleteBook() {
 }
 
 addBookToLibrary("Hobbit", "Tolkein", 300, false);
-displayBooks();
