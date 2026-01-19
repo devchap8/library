@@ -127,3 +127,15 @@ function addFormToggleButtonEventListener() {
 
 addBookToLibrary("Hobbit", "Tolkein", 300, false);
 addBookToLibrary("Lord of the Rings", "Tolkein", 600, true);
+
+let form = document.querySelector("form");
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    let bookData = new FormData(form);
+    const title = bookData.get("title");
+    const author = bookData.get("author");
+    const pages = bookData.get("pages");
+    const read = (bookData.get("read") === "on" ?
+        true : false);
+    addBookToLibrary(title, author, pages, read);
+})

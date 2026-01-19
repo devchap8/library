@@ -11,17 +11,17 @@
     <div id="bookDisplay">
         
     </div>
-    <div class="formContainer">
+    <div class="formContainer hideFormContainer">
         <form action="" method="get">
             <div class="formTitle">
                 Add Book to Library
             </div>
             <label for="title">Title:</label>
-            <input type="text" id="title" name="title">
+            <input type="text" id="title" name="title" required>
             <label for="author">Author:</label>
-            <input type="text" id="author" name="author">
+            <input type="text" id="author" name="author" required>
             <label for="pages">Pages:</label>
-            <input type="tel" id="pages" name="pages">
+            <input type="tel" id="pages" name="pages" min="1" pattern="\d" required>
             <label for="read">Read?</label>
             <input type="checkbox" id="read" name="read">
             <input type="submit" value="Add Book">
