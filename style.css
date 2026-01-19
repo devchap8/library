@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+body {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
 .bookContainer {
     display: flex;
     flex-direction: column;
@@ -35,7 +41,13 @@
     margin-left: auto;
 }
 
-input[type=checkbox] {
-    margin-left: auto;
-    align-self: flex-end;
+.formContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    height: 500px;
+    width: 500px;
+    border: 5px solid black;
 }
