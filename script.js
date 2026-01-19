@@ -61,6 +61,11 @@ function displayBooks() {
 }
 
 function addButtonEventListeners() {
+    addDeleteButtonEventListeners();
+    addReadToggleEventListeners();
+}
+
+function addDeleteButtonEventListeners() {
     let buttons = document.querySelectorAll(".deleteButton");
     buttons = Array.from(buttons);
     for(deleteButton of buttons) {
@@ -75,6 +80,26 @@ function deleteBook() {
     const bookIndex = myLibrary.findIndex((item) => item.id === box.id);
     myLibrary.splice(bookIndex, 1);
     displayBooks();
+}
+
+function addReadToggleEventListeners() {
+    let buttons = document.querySelectorAll(".toggleRead");
+    buttons = Array.from(buttons);
+    for(toggleButton of buttons) {
+        toggleButton.addEventListener("click", toggleRead);
+    }
+}
+
+function toggleRead() {
+    const box = this.parentElement.parentElement;
+    for(book of myLibrary) {
+        if (book.id === box.id) {
+            const thisBook = book;
+            thisBook.read = !thisBook.read;
+            displayBooks();
+        }
+    }
+
 }
 
 function clearLibrary() {
