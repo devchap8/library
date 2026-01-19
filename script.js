@@ -60,9 +60,19 @@ function displayBooks() {
     }    
 }
 
+function clearLibrary() {
+    const display = document.getElementById("bookDisplay");
+    let books = document.querySelectorAll(".bookContainer");
+    books = Array.from(books);
+    for(book of books) {
+        display.removeChild(book);
+    }
+}
+
 function addButtonEventListeners() {
     addDeleteButtonEventListeners();
     addReadToggleEventListeners();
+    addFormToggleButtonEventListener();
 }
 
 function addDeleteButtonEventListeners() {
@@ -102,13 +112,17 @@ function toggleRead() {
 
 }
 
-function clearLibrary() {
-    const display = document.getElementById("bookDisplay");
-    let books = document.querySelectorAll(".bookContainer");
-    books = Array.from(books);
-    for(book of books) {
-        display.removeChild(book);
-    }
+function addFormToggleButtonEventListener() {
+    const button = document.querySelector(".formToggleButton");
+    const formContainer = document.querySelector(".formContainer");
+    button.addEventListener("click", function () {
+        if(formContainer.classList.contains("hideFormContainer")) {
+            formContainer.classList.remove("hideFormContainer");
+        }
+        else {
+            formContainer.classList.add("hideFormContainer");
+        }
+    })
 }
 
 addBookToLibrary("Hobbit", "Tolkein", 300, false);
