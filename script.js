@@ -114,15 +114,25 @@ function toggleRead() {
 
 function addFormToggleButtonEventListener() {
     const button = document.querySelector(".formToggleButton");
+    button.addEventListener("click", toggleFormDisplay)
+}
+
+function toggleFormDisplay() {
     const formContainer = document.querySelector(".formContainer");
-    button.addEventListener("click", function () {
-        if(formContainer.classList.contains("hideFormContainer")) {
-            formContainer.classList.remove("hideFormContainer");
-        }
-        else {
-            formContainer.classList.add("hideFormContainer");
-        }
-    })
+    if(formContainer.classList.contains("hideFormContainer")) {
+        formContainer.classList.remove("hideFormContainer");
+        const titleInput = document.querySelector("#title");
+        titleInput.value = "";
+        const authorInput = document.querySelector("#author");
+        authorInput.value = "";
+        const pagesInput = document.querySelector("#pages");
+        pagesInput.value = "";
+        const readInput = document.querySelector("#read");
+        readInput.checked = false;
+    }
+    else {
+        formContainer.classList.add("hideFormContainer");
+    }
 }
 
 addBookToLibrary("Hobbit", "Tolkein", 300, false);
@@ -138,4 +148,5 @@ form.addEventListener("submit", function(e) {
     const read = (bookData.get("read") === "on" ?
         true : false);
     addBookToLibrary(title, author, pages, read);
+    toggleFormDisplay();
 })
