@@ -17,6 +17,7 @@
 
 .boxLine {
     display: flex;
+    align-items: center;
 }
 
 .deleteButton {
@@ -27,6 +28,10 @@
     color: white;
     border-radius: 50%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: auto;
+}
+
+.toggleRead {
     margin-left: auto;
 }
 

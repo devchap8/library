@@ -42,12 +42,9 @@ function displayBooks() {
         read.classList.add("boxLine");
         (book.read === true) ? read.innerHTML = `Read? Yes` 
             : read.innerHTML = `Read? No`;  
-        const readLabel = document.createElement("label");
-        readLabel.setAttribute("for", "bookRead");
-        const readToggle = document.createElement("input");
-        readToggle.id = "bookRead";
-        readToggle.setAttribute("name", "bookRead");
-        readToggle.setAttribute("type", "checkbox");
+        const readToggle = document.createElement("button");
+        readToggle.classList.add("toggleRead");
+        readToggle.innerHTML = "Toggle Read";
         const deleteButton = document.createElement("button");
         deleteButton.innerHTML = "X";
         deleteButton.classList.add("deleteButton");
@@ -56,7 +53,6 @@ function displayBooks() {
         box.appendChild(topLine)
         box.appendChild(author);
         box.appendChild(pages);
-        read.appendChild(readLabel);
         read.appendChild(readToggle);
         box.appendChild(read);
         bookDisplay.appendChild(box);
