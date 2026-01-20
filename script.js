@@ -64,6 +64,7 @@ function displayBooks() {
 function updateStats() {
     updateBooksRead();
     updatePagesFlipped();
+    updateAuthorsRead();
 }
 
 function updateBooksRead() {
@@ -99,12 +100,36 @@ function getPageCounts() {
     let totalPages = 0;
     let totalPagesRead = 0;
     for(book of myLibrary) {
-        totalPages += book.pages;
+        totalPages += +book.pages;
         if(book.read === true) {
-            totalPagesRead += book.pages;
+            totalPagesRead += +book.pages;
         }
     }
     return [totalPagesRead, totalPages];
+}
+
+function updateAuthorsRead() {
+    const authorsReadNum = document.querySelector(".authorsReadNum");
+    const totalAuthorsNum = document.querySelector(".totalAuthorsNum");
+    const authorWord = document.querySelector(".authorWord");
+    const authorNums = getAuthorNums();
+    authorsReadNum.innerHTML = authorNums[0];
+    totalAuthorsNum.innerHTML = authorNums[1];
+    authorNums[1] === 1 ? authorWord.innerHTML = "author" : authorWord.innerHTML = "authors";
+}
+
+function getAuthorNums() {
+    let totalAuthorsRead = 0;
+    let authors = [];
+    for(book of myLibrary) {
+        if(!(authors.includes(book.author))) {
+            authors.push(book.author);
+        }
+        if(book.read === true) {
+            totalAuthorsRead++;
+        }
+    }
+    return [totalAuthorsRead, authors.length];
 }
 
 function clearLibrary() {
