@@ -58,10 +58,10 @@ function displayBooks() {
         bookDisplay.appendChild(box);
     } 
     addButtonEventListeners();
-    updateHeader();   
+    updateStats();   
 }
 
-function updateHeader() {
+function updateStats() {
     updateBooksRead();
     updatePagesFlipped();
 }

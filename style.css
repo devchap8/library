@@ -15,6 +15,28 @@ body {
     background-color: var(--dark-blue);
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    display: grid;
+    grid-template-rows: 150px 1fr 50px;
+
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+h1 {
+    font-size: 3.5rem;
+}
+
+.libraryStats div {
+    margin-bottom: 5px;
+}
+
+.stats {
+    font-weight: bold;
 }
 
 .bookContainer {
@@ -68,4 +90,12 @@ body {
     position: absolute;
     bottom: 25px;
     right: 25px;
+}
+
+.footer {
+    justify-self: center;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
