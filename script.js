@@ -33,11 +33,14 @@ function displayBooks() {
         const topLine = document.createElement("div");
         topLine.classList.add("boxLine");
         const title = document.createElement("span");  
-        title.innerHTML = `Title: ${book.title}`;
+        title.classList.add("bookTitle")
+        title.innerHTML = `${book.title}`;
         const author = document.createElement("div");
-        author.innerHTML = `Author: ${book.author}`;
+        author.classList.add("bookAuthor");
+        author.innerHTML = `by ${book.author}`;
         const pages = document.createElement("div");
-        pages.innerHTML = `Pages: ${book.pages}`;
+        pages.classList.add("bookPages");
+        pages.innerHTML = `${book.pages} pages`;
         const read = document.createElement("div");
         read.classList.add("boxLine");
         (book.read === true) ? read.innerHTML = `Read? Yes` 
@@ -227,4 +230,5 @@ function parseBookData() {
 
 addBookToLibrary("Hobbit", "Tolkein", 300, false);
 addBookToLibrary("Lord of the Rings", "Tolkein", 600, true);
+addBookToLibrary("Harry Potter and the Sorcerer's Stone", "J.K. Rowling", 350, true);
 parseBookData();
