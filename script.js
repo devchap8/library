@@ -84,12 +84,15 @@ function addDeleteButtonEventListeners() {
 }
 
 function deleteBook() {
-    const display = document.getElementById("bookDisplay");
-    const box = this.parentElement.parentElement;
-    display.removeChild(box);
-    const bookIndex = myLibrary.findIndex((item) => item.id === box.id);
-    myLibrary.splice(bookIndex, 1);
-    displayBooks();
+    const choice = confirm("Are you sure you want to remove this book from your library?");
+    if(choice) {
+        const display = document.getElementById("bookDisplay");
+        const box = this.parentElement.parentElement;
+        display.removeChild(box);
+        const bookIndex = myLibrary.findIndex((item) => item.id === box.id);
+        myLibrary.splice(bookIndex, 1);
+        displayBooks();
+    }
 }
 
 function addReadToggleEventListeners() {
