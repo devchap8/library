@@ -9,7 +9,13 @@
 </head>
 <body>
     <div id="bookDisplay">
-        
+        <div class="homepageTop">
+            <h1>Your Library</h1>
+            <h2 class="booksRead"><span class="booksReadNum">-</span> of 
+                <span class="totalBooksNum">-</span> <span class="bookWord">books</span> read</h2>
+            <h3 class="pagesFlipped"><span class="pagesFlippedNum">-</span> of 
+                <span class="totalPagesNum">-</span> pages flipped</h3>
+        </div>
     </div>
     <div class="formContainer hideFormContainer">
         <form action="" method="get">
@@ -21,7 +27,7 @@
             <label for="author">Author:</label>
             <input type="text" id="author" name="author" required>
             <label for="pages">Pages:</label>
-            <input type="tel" id="pages" name="pages" min="1" pattern="\d" required>
+            <input type="tel" id="pages" name="pages" min="1" pattern="\d+" required>
             <label for="read">Read?</label>
             <input type="checkbox" id="read" name="read">
             <input type="submit" value="Add Book">

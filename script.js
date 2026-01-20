@@ -56,8 +56,55 @@ function displayBooks() {
         read.appendChild(readToggle);
         box.appendChild(read);
         bookDisplay.appendChild(box);
-        addButtonEventListeners();
-    }    
+    } 
+    addButtonEventListeners();
+    updateHeader();   
+}
+
+function updateHeader() {
+    updateBooksRead();
+    updatePagesFlipped();
+}
+
+function updateBooksRead() {
+    const booksReadNum = document.querySelector(".booksReadNum");
+    const totalBooksNum = document.querySelector(".totalBooksNum");
+    const bookWord = document.querySelector(".bookWord");
+    const bookNums = getBookCounts();
+    booksReadNum.innerHTML = bookNums[0];
+    totalBooksNum.innerHTML = bookNums[1];
+    myLibrary.length === 1 ? bookWord.innerHTML = "book" : bookWord.innerHTML = "books";
+}
+
+function getBookCounts() {
+    const totalBooks = myLibrary.length;
+    let readCount = 0;
+    for(book of myLibrary) {
+        if (book.read === true) {
+            readCount++;
+        }
+    }
+    return [readCount, totalBooks];
+}
+
+function updatePagesFlipped() {
+    const pagesFlippedNum = document.querySelector(".pagesFlippedNum");
+    const totalPagesNum = document.querySelector(".totalPagesNum");
+    const pageNums = getPageCounts();
+    pagesFlippedNum.innerHTML = pageNums[0];
+    totalPagesNum.innerHTML = pageNums[1];
+}
+
+function getPageCounts() {
+    let totalPages = 0;
+    let totalPagesRead = 0;
+    for(book of myLibrary) {
+        totalPages += book.pages;
+        if(book.read === true) {
+            totalPagesRead += book.pages;
+        }
+    }
+    return [totalPagesRead, totalPages];
 }
 
 function clearLibrary() {
