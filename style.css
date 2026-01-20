@@ -22,9 +22,10 @@ body {
 }
 
 .header {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
-    justify-content: space-around;
+    justify-items: center;
 }
 
 h1 {
