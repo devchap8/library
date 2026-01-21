@@ -179,3 +179,13 @@ h1 {
     align-items: center;
     gap: 5px;
 }
+
+.blurred {
+    filter: blur(10px);
+}
+
+.header,
+#bookDisplay,
+.footer {
+    transition: .5s;
+}

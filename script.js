@@ -199,6 +199,9 @@ function addFormToggleButtonEventListener() {
 
 function toggleFormDisplay() {
     const formContainer = document.querySelector(".formContainer");
+    const header = document.querySelector(".header");
+    const bookDisplay = document.querySelector("#bookDisplay");
+    const footer = document.querySelector(".footer");
     if(formContainer.classList.contains("hideFormContainer")) {
         formContainer.classList.remove("hideFormContainer");
         const titleInput = document.querySelector("#title");
@@ -212,6 +215,16 @@ function toggleFormDisplay() {
     }
     else {
         formContainer.classList.add("hideFormContainer");
+    }
+    if(header.classList.contains("blurred")) {
+        header.classList.remove("blurred");
+        bookDisplay.classList.remove("blurred");
+        footer.classList.remove("blurred");
+    }
+    else {
+        header.classList.add("blurred");
+        bookDisplay.classList.add("blurred");
+        footer.classList.add("blurred");
     }
 }
 
