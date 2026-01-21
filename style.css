@@ -10,6 +10,7 @@
     --orange: rgb(214, 106, 67);
     --light-gray: #c4e2fc;
     --light-orange: rgb(255, 158, 122);
+    --shadow: 0px 3px 5px rgb(87, 87, 87);
 }
 
 body {
@@ -21,7 +22,6 @@ body {
 
     display: grid;
     grid-template-rows: 150px 1fr 50px;
-
 }
 
 .header {
@@ -64,6 +64,12 @@ h1 {
     padding: 10px;
     border-radius: 5px;
     font-size: 1.15rem;
+    transition: 0.33s;
+    box-shadow: var(--shadow);
+}
+
+.bookContainer:hover {
+    margin-top: -10px;
 }
 
 .readBook {
@@ -139,9 +145,9 @@ h1 {
 
 .formToggleButton {
     font-size: 2rem;
-    position: sticky;
+    position: fixed;
     bottom: 25px;
-    margin-left: 25px;
+    right: 25px;
     border: none;
     width: 50px;
     height: 50px;
