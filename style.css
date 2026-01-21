@@ -7,12 +7,13 @@
 :root {
     --dark-blue: #081725;
     --gray: #8698a8;
+    --orange: rgb(214, 106, 67);
 }
 
 body {
     position: relative;
     height: 100vh;
-    overflow: hidden;
+    /* overflow: hidden; */
     background-color: var(--dark-blue);
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -43,6 +44,11 @@ h1 {
 
 #bookDisplay {
     padding: 10px;
+    width: 75%;
+    justify-self: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 270px);
+    grid-auto-rows: 220px;
 }
 
 .bookContainer {
@@ -57,6 +63,11 @@ h1 {
     padding: 10px;
     border-radius: 5px;
     font-size: 1.15rem;
+}
+
+.readBook {
+    border-left-color: var(--orange);
+    outline: 1px solid var(--orange);
 }
 
 .bookTitle {
@@ -91,8 +102,7 @@ h1 {
     min-width: 20px;
     height: auto;
     border: none;
-    background-color: red;
-    color: white;
+    background-color: var(--orange);
     border-radius: 50%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-left: auto;
@@ -127,9 +137,9 @@ h1 {
 
 .formToggleButton {
     font-size: 2rem;
-    position: absolute;
+    position: sticky;
     bottom: 25px;
-    right: 25px;
+    margin-left: 25px;
     border: none;
     width: 50px;
     height: 50px;

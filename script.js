@@ -45,6 +45,8 @@ function displayBooks() {
         read.classList.add("boxLine");
         (book.read === true) ? read.innerHTML = `Read? Yes` 
             : read.innerHTML = `Read? No`;  
+        (book.read === true) ? box.classList.add("readBook") 
+            : box.classList.remove("readBook"); 
         const readToggle = document.createElement("button");
         readToggle.classList.add("toggleRead");
         readToggle.innerHTML = "Toggle Read";
