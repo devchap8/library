@@ -8,12 +8,13 @@
     --dark-blue: #081725;
     --gray: #8698a8;
     --orange: rgb(214, 106, 67);
+    --light-gray: #c4e2fc;
+    --light-orange: rgb(255, 158, 122);
 }
 
 body {
     position: relative;
     height: 100vh;
-    /* overflow: hidden; */
     background-color: var(--dark-blue);
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -120,6 +121,7 @@ h1 {
     height: 20px;
 }
 
+
 .formContainer {
     position: absolute;
     top: 50%;
@@ -147,6 +149,21 @@ h1 {
     font-size: 3rem;
     padding-bottom: 55px;
     background-color: var(--gray);
+}
+
+.deleteButton:hover,
+.toggleRead:hover,
+.formToggleButton:hover {
+    cursor: pointer;
+}
+
+.toggleRead:hover,
+.formToggleButton:hover {
+    background-color: var(--light-gray);
+}
+
+.deleteButton:hover {
+    background-color: var(--light-orange);
 }
 
 .footer {
