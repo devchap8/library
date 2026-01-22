@@ -243,7 +243,7 @@ function parseBookData() {
     })
 }
 
-addBookToLibrary("Hobbit", "Tolkein", 300, false);
-addBookToLibrary("Lord of the Rings", "Tolkein", 600, true);
-addBookToLibrary("Harry Potter and the Sorcerer's Stone", "J.K. Rowling", 350, true);
+addBookToLibrary("The Outsiders", "S.E. Hinton", 192, false);
+addBookToLibrary("Lord of the Flies", "William Golding", 224, true);
+addBookToLibrary("Harry Potter and the Sorcerer's Stone", "J.K. Rowling", 320, true);
 parseBookData();
