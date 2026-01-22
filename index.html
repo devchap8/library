@@ -28,14 +28,22 @@
             <div class="formTitle">
                 Add Book to Library
             </div>
-            <label for="title">Title:</label>
-            <input type="text" id="title" name="title" required>
-            <label for="author">Author:</label>
-            <input type="text" id="author" name="author" required>
-            <label for="pages">Pages:</label>
-            <input type="tel" id="pages" name="pages" min="1" pattern="\d+" required>
-            <label for="read">Read?</label>
-            <input type="checkbox" id="read" name="read">
+            <label for="title">
+                <input type="text" id="title" name="title" required>
+                <span>Title</span>
+            </label>
+            <label for="author">
+                <input type="text" id="author" name="author" required>
+                <span>Author</span>
+            </label>
+            <label for="pages">
+                <input type="tel" id="pages" name="pages" min="1" pattern="\d+" required>
+                <span>Pages</span>
+            </label>
+            <label for="read">
+                <input type="checkbox" id="read" name="read">
+                Read?
+            </label>
             <input type="submit" value="Add Book">
         </form>
     </div>

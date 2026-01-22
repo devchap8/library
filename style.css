@@ -50,6 +50,7 @@ h1 {
     display: grid;
     grid-template-columns: repeat(auto-fit, 270px);
     grid-auto-rows: 220px;
+    justify-content: center;
 }
 
 .bookContainer {
@@ -127,36 +128,6 @@ h1 {
     height: 20px;
 }
 
-
-.formContainer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    height: 500px;
-    width: 500px;
-    border: 5px solid black;
-}
-
-.hideFormContainer {
-    display: none;
-}
-
-.formToggleButton {
-    font-size: 2rem;
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    font-size: 3rem;
-    padding-bottom: 55px;
-    background-color: var(--gray);
-}
-
 .deleteButton:hover,
 .toggleRead:hover,
 .formToggleButton:hover {
@@ -188,4 +159,78 @@ h1 {
 #bookDisplay,
 .footer {
     transition: .5s;
+}
+
+.formContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    height: 500px;
+    width: 500px;
+    background-color: var(--gray);
+    padding: 10px;
+}
+
+.hideFormContainer {
+    display: none;
+}
+
+.formToggleButton {
+    font-size: 2rem;
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 3rem;
+    padding-bottom: 55px;
+    background-color: var(--gray);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.formTitle {
+    font-size: 2.25rem;
+    font-weight: bold;
+}
+
+label {
+    position: relative;
+    border-bottom: 1px solid #484848;
+}
+
+input {
+    border: none;
+    outline: none;
+    height: 20px;
+    background-color: transparent;
+    margin-top: 20px;
+}
+
+input::placeholder {
+    opacity: 0;
+}
+
+form span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: var(--dark-blue);
+    transition-duration: .33s;
+    transform: translateY(30px);
+}
+
+label:focus-within > span,
+input:not(:placeholder-shown) + span {
+    transform: translateY(0px);
 }
