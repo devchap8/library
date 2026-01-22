@@ -10,6 +10,7 @@
     --orange: rgb(214, 106, 67);
     --light-gray: #c4e2fc;
     --light-orange: rgb(255, 158, 122);
+    --dark-gray: #484848;
     --shadow: 0px 3px 5px rgb(87, 87, 87);
 }
 
@@ -207,7 +208,7 @@ form {
 
 label {
     position: relative;
-    border-bottom: 1px solid #484848;
+    border-bottom: 1px solid var(--dark-gray);
     font-size: 1.25rem;
 }
 
@@ -238,4 +239,32 @@ form span {
 label:focus-within > span,
 input:not(:placeholder-shown) + span {
     transform: translateY(0px);
+}
+
+label[for="read"] {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    cursor: pointer;
+    
+}
+
+input[type="checkbox"] {
+    width: 25px;
+    cursor: pointer;
+}
+
+.readText{
+    color: var(--dark-blue);
+}
+
+input[type="submit"] {
+    background-color: var(--dark-gray);
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #838383;
 }
