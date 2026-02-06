@@ -59,7 +59,6 @@ function displayBooks() {
         box.appendChild(read);
         bookDisplay.appendChild(box);
     } 
-    addButtonEventListeners();
     updateStats();   
 }
 
@@ -144,49 +143,41 @@ function clearLibrary() {
 }
 
 function addButtonEventListeners() {
-    addDeleteButtonEventListeners();
-    addReadToggleEventListeners();
     addFormToggleButtonEventListener();
+    addBookDisplayEventListeners();
 }
 
-function addDeleteButtonEventListeners() {
-    let buttons = document.querySelectorAll(".deleteButton");
-    buttons = Array.from(buttons);
-    for(let deleteButton of buttons) {
-        deleteButton.addEventListener("click", deleteBook)
-    }
+function addBookDisplayEventListeners() {
+    const bookDisplay = document.querySelector("#bookDisplay");
+    bookDisplay.addEventListener("click", deleteBook);
+    bookDisplay.addEventListener("click", toggleRead);
 }
 
-function deleteBook() {
-    const choice = confirm("Are you sure you want to remove this book from your library?");
-    if(choice) {
-        const display = document.getElementById("bookDisplay");
-        const box = this.parentElement.parentElement;
-        display.removeChild(box);
-        const bookIndex = myLibrary.findIndex((item) => item.id === box.id);
-        myLibrary.splice(bookIndex, 1);
-        displayBooks();
-    }
-}
-
-function addReadToggleEventListeners() {
-    let buttons = document.querySelectorAll(".toggleRead");
-    buttons = Array.from(buttons);
-    for(let toggleButton of buttons) {
-        toggleButton.addEventListener("click", toggleRead);
-    }
-}
-
-function toggleRead() {
-    const box = this.parentElement.parentElement;
-    for(let book of myLibrary) {
-        if (book.id === box.id) {
-            const thisBook = book;
-            thisBook.read = !thisBook.read;
+function deleteBook(event) {
+    if(event.target.classList.contains("deleteButton")) {
+        const choice = confirm("Are you sure you want to remove this book from your library?");
+        if(choice) {
+            const display = document.getElementById("bookDisplay");
+            const box = event.target.parentElement.parentElement;
+            display.removeChild(box);
+            const bookIndex = myLibrary.findIndex((item) => item.id === box.id);
+            myLibrary.splice(bookIndex, 1);
             displayBooks();
         }
     }
+}
 
+function toggleRead(event) {
+    if(event.target.classList.contains("toggleRead")) {
+        const box = event.target.parentElement.parentElement;
+        for(let book of myLibrary) {
+            if (book.id === box.id) {
+                const thisBook = book;
+                thisBook.read = !thisBook.read;
+                displayBooks();
+            }
+        }
+    }
 }
 
 function addFormToggleButtonEventListener() {
@@ -243,4 +234,5 @@ function parseBookData() {
 addBookToLibrary("The Outsiders", "S.E. Hinton", 192, false);
 addBookToLibrary("Lord of the Flies", "William Golding", 224, true);
 addBookToLibrary("Harry Potter and the Sorcerer's Stone", "J.K. Rowling", 320, true);
+addButtonEventListeners();
 parseBookData();
