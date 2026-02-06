@@ -1,16 +1,13 @@
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
-    if (!new.target) {
-        throw Error("You must use the 'new' operator to call the constructor");
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
     }
-
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-
-    this.info = function() {
+    info() {
         if (this.read === true) return `${this.title} by ${this.author}, ${this.pages} pages, has been read`;
         return `${this.title} by ${this.author}, ${this.pages} pages, not read yet`;
     }
@@ -26,7 +23,7 @@ function addBookToLibrary(title, author, pages, read) {
 function displayBooks() {
     clearLibrary();
     const bookDisplay = document.getElementById("bookDisplay");
-    for (book of myLibrary) {
+    for (let book of myLibrary) {
         const box = document.createElement("div");
         box.id = book.id;
         box.classList.add("bookContainer");
@@ -85,7 +82,7 @@ function updateBooksRead() {
 function getBookCounts() {
     const totalBooks = myLibrary.length;
     let readCount = 0;
-    for(book of myLibrary) {
+    for(let book of myLibrary) {
         if (book.read === true) {
             readCount++;
         }
@@ -104,7 +101,7 @@ function updatePagesFlipped() {
 function getPageCounts() {
     let totalPages = 0;
     let totalPagesRead = 0;
-    for(book of myLibrary) {
+    for(let book of myLibrary) {
         totalPages += +book.pages;
         if(book.read === true) {
             totalPagesRead += +book.pages;
@@ -126,7 +123,7 @@ function updateAuthorsRead() {
 function getAuthorNums() {
     let totalAuthorsRead = 0;
     let authors = [];
-    for(book of myLibrary) {
+    for(let book of myLibrary) {
         if(!(authors.includes(book.author))) {
             authors.push(book.author);
         }
@@ -141,7 +138,7 @@ function clearLibrary() {
     const display = document.getElementById("bookDisplay");
     let books = document.querySelectorAll(".bookContainer");
     books = Array.from(books);
-    for(book of books) {
+    for(let book of books) {
         display.removeChild(book);
     }
 }
@@ -155,7 +152,7 @@ function addButtonEventListeners() {
 function addDeleteButtonEventListeners() {
     let buttons = document.querySelectorAll(".deleteButton");
     buttons = Array.from(buttons);
-    for(deleteButton of buttons) {
+    for(let deleteButton of buttons) {
         deleteButton.addEventListener("click", deleteBook)
     }
 }
@@ -175,14 +172,14 @@ function deleteBook() {
 function addReadToggleEventListeners() {
     let buttons = document.querySelectorAll(".toggleRead");
     buttons = Array.from(buttons);
-    for(toggleButton of buttons) {
+    for(let toggleButton of buttons) {
         toggleButton.addEventListener("click", toggleRead);
     }
 }
 
 function toggleRead() {
     const box = this.parentElement.parentElement;
-    for(book of myLibrary) {
+    for(let book of myLibrary) {
         if (book.id === box.id) {
             const thisBook = book;
             thisBook.read = !thisBook.read;
