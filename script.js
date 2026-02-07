@@ -80,13 +80,8 @@ function updateBooksRead() {
 
 function getBookCounts() {
     const totalBooks = myLibrary.length;
-    let readCount = 0;
-    for(let book of myLibrary) {
-        if (book.read === true) {
-            readCount++;
-        }
-    }
-    return [readCount, totalBooks];
+    const readBooks = myLibrary.filter((book) => book.read === true);
+    return [readBooks.length, totalBooks];
 }
 
 function updatePagesFlipped() {
@@ -98,14 +93,11 @@ function updatePagesFlipped() {
 }
 
 function getPageCounts() {
-    let totalPages = 0;
-    let totalPagesRead = 0;
-    for(let book of myLibrary) {
-        totalPages += +book.pages;
-        if(book.read === true) {
-            totalPagesRead += +book.pages;
-        }
-    }
+    // totalPages: use reduce to add up all the pages of the books in the library
+    // totalPagesRead: use filter to filter for read books, then use the same reduce function to add the pages
+    let totalPages = myLibrary.reduce((sum, book) => sum + +book.pages, 0);
+    let totalPagesRead = myLibrary.filter((book) => book.read === true)
+        .reduce((sum, book) => sum + +book.pages, 0);
     return [totalPagesRead, totalPages];
 }
 
@@ -120,26 +112,15 @@ function updateAuthorsRead() {
 }
 
 function getAuthorNums() {
-    let totalAuthorsRead = 0;
-    let authors = [];
-    for(let book of myLibrary) {
-        if(!(authors.includes(book.author))) {
-            authors.push(book.author);
-        }
-        if(book.read === true) {
-            totalAuthorsRead++;
-        }
-    }
-    return [totalAuthorsRead, authors.length];
-}
-
-function clearLibrary() {
-    const display = document.getElementById("bookDisplay");
-    let books = document.querySelectorAll(".bookContainer");
-    books = Array.from(books);
-    for(let book of books) {
-        display.removeChild(book);
-    }
+    //make 2 sets, authors and readAuthors
+    //use .forEach to go over every book in the library and add the author to authors
+    //filter myLibrary for book.read === true and add each of those authors into readAuthors
+    let totalAuthorsRead = new Set();
+    let totalAuthors = new Set();
+    myLibrary.forEach((book) => totalAuthors.add(book.author));
+    const readBooks = myLibrary.filter((book) => book.read === true);
+    readBooks.forEach((book) => totalAuthorsRead.add(book.author));
+    return [totalAuthorsRead.size, totalAuthors.size];
 }
 
 function addButtonEventListeners() {
