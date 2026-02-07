@@ -17,48 +17,48 @@ function addBookToLibrary(title, author, pages, read) {
     let book = new Book(title, author, pages, read);
     book.id = crypto.randomUUID();
     myLibrary.push(book);
-    displayBooks();
+    displayBook(book);
 }
 
-function displayBooks() {
-    clearLibrary();
+function displayBook(book) {
     const bookDisplay = document.getElementById("bookDisplay");
-    for (let book of myLibrary) {
-        const box = document.createElement("div");
-        box.id = book.id;
-        box.classList.add("bookContainer");
-        const topLine = document.createElement("div");
-        topLine.classList.add("boxLine");
-        const title = document.createElement("span");  
-        title.classList.add("bookTitle")
-        title.innerHTML = `${book.title}`;
-        const author = document.createElement("div");
-        author.classList.add("bookAuthor");
-        author.innerHTML = `by ${book.author}`;
-        const pages = document.createElement("div");
-        pages.classList.add("bookPages");
-        pages.innerHTML = `${book.pages} pages`;
-        const read = document.createElement("div");
-        read.classList.add("boxLine");
-        (book.read === true) ? read.innerHTML = `Read? Yes` 
-            : read.innerHTML = `Read? No`;  
-        (book.read === true) ? box.classList.add("readBook") 
-            : box.classList.remove("readBook"); 
-        const readToggle = document.createElement("button");
-        readToggle.classList.add("toggleRead");
-        readToggle.innerHTML = "Toggle Read";
-        const deleteButton = document.createElement("button");
-        deleteButton.innerHTML = "X";
-        deleteButton.classList.add("deleteButton");
-        topLine.appendChild(title);
-        topLine.appendChild(deleteButton);
-        box.appendChild(topLine)
-        box.appendChild(author);
-        box.appendChild(pages);
-        read.appendChild(readToggle);
-        box.appendChild(read);
-        bookDisplay.appendChild(box);
-    } 
+    const box = document.createElement("div");
+    box.id = book.id;
+    box.classList.add("bookContainer");
+    const topLine = document.createElement("div");
+    topLine.classList.add("boxLine");
+    const title = document.createElement("span");  
+    title.classList.add("bookTitle")
+    title.innerHTML = `${book.title}`;
+    const author = document.createElement("div");
+    author.classList.add("bookAuthor");
+    author.innerHTML = `by ${book.author}`;
+    const pages = document.createElement("div");
+    pages.classList.add("bookPages");
+    pages.innerHTML = `${book.pages} pages`;
+    const readLine = document.createElement("div");
+    readLine.classList.add("boxLine");
+    const readStatus = document.createElement("span");
+    readStatus.classList.add("readStatus");
+    (book.read === true) ? readStatus.innerHTML = `Read? Yes` 
+        : readStatus.innerHTML = `Read? No`;  
+    (book.read === true) ? box.classList.add("readBook") 
+        : box.classList.remove("readBook"); 
+    const readToggle = document.createElement("button");
+    readToggle.classList.add("toggleRead");
+    readToggle.innerHTML = "Toggle Read";
+    const deleteButton = document.createElement("button");
+    deleteButton.innerHTML = "X";
+    deleteButton.classList.add("deleteButton");
+    topLine.appendChild(title);
+    topLine.appendChild(deleteButton);
+    box.appendChild(topLine)
+    box.appendChild(author);
+    box.appendChild(pages);
+    readLine.appendChild(readStatus);
+    readLine.appendChild(readToggle);
+    box.appendChild(readLine);
+    bookDisplay.appendChild(box);
     updateStats();   
 }
 
@@ -162,21 +162,24 @@ function deleteBook(event) {
             display.removeChild(box);
             const bookIndex = myLibrary.findIndex((item) => item.id === box.id);
             myLibrary.splice(bookIndex, 1);
-            displayBooks();
         }
     }
+    updateStats();
 }
 
 function toggleRead(event) {
     if(event.target.classList.contains("toggleRead")) {
         const box = event.target.parentElement.parentElement;
-        for(let book of myLibrary) {
-            if (book.id === box.id) {
-                const thisBook = book;
-                thisBook.read = !thisBook.read;
-                displayBooks();
-            }
+        box.classList.contains("readBook") ? box.classList.remove("readBook") : box.classList.add("readBook");
+        const readStatus = box.querySelector(".readStatus");
+        box.classList.contains("readBook") ? readStatus.innerHTML = "Read? Yes" : readStatus.innerHTML = "Read? No";
+        // get the book in the library which matches the ID and change its read status
+        let book;
+        for(const libBook of myLibrary) {
+            if(libBook.id === box.id) book = libBook;
         }
+        box.classList.contains("readBook") ? book.read = true : book.read = false;
+        updateStats();
     }
 }
 
